@@ -13,11 +13,6 @@
     state: directory
   notify: Remove biol tmp dir
 
-- name: Get util files
-  get_url:
-    url: "{{ conda_util_file }}"
-    dest: /tmp/biol/
-
 - name: Set conda executable variable
   set_fact:
     conda_executable: "{{ base_path }}/.biolighthouse/software/conda/bin/conda"
@@ -33,16 +28,6 @@
     path: "{{ ansible_env.HOME }}/.bashrc"
     line: "conda activate bl_cutadapt"
   notify: Remove environment activation in .bashrc
-
-- include: install-tool.yml
-
-
-
-
-
-
-
-
 
 - name: Install biopython via conda
   conda_install:
